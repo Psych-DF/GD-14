@@ -1,0 +1,451 @@
+/* Always put these at the top to normalize the page layout */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Your existing styles go below this */
+body {
+  background: #111;
+  color: #eee;
+  font-family: monospace;
+  text-align: center;
+}
+
+#game-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE and Edge */
+  position: relative;
+}
+
+#game-wrapper::-webkit-scrollbar {
+  display: none;                /* Chrome and Safari */
+}
+/* GRID */
+#game {
+  display: grid;
+  grid-template-columns: repeat(300, 24px);
+  grid-template-rows: repeat(300, 24px);
+  gap: 2px;
+  /* REMOVE these two lines 👇 */
+  /* margin: 0 auto;
+  margin-top: 20px; */
+  width: fit-content;
+}
+/* TILES */
+.tile {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  background: #444;
+  z-index: 0;
+}
+
+#game {
+  display: grid;
+  grid-template-columns: repeat(300, 24px);
+  grid-template-rows: repeat(300, 24px);
+  gap: 2px;
+  width: fit-content;
+}
+
+.player {
+  background: white;
+  outline: 1px solid white;
+  box-shadow: 0 0 2px 2px white;
+  z-index: 10; /* doesn't affect layout since you're not nesting */
+}
+
+.mined {
+  background: #222;
+  z-index: 10;
+}
+
+.mining {
+background-color: lime;
+  animation: pulse 0.1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { filter: brightness(1); }
+  to   { filter: brightness(1.5); }
+}
+/* UI HUD */
+#hud {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  text-align: left;
+  color: #4dd;
+  font-family: monospace;
+}
+/* SPAWN STATE TILES */
+
+.tile[data-type="sword"],
+.tile[data-type="cat"],
+.tile[data-type="necklace"],
+.tile[data-type="heart"],
+.tile[data-type="shroom"],
+.tile[data-type="flame"],
+.tile[data-type="key"],
+.tile[data-type="bone"],
+.tile[data-type="skull"],
+.tile[data-type="crown"],
+.tile[data-type="bottle"],
+.tile[data-type="soil"],
+.tile[data-type="coin"],
+.tile[data-type="pebble"],
+.tile[data-type="note"],
+.tile[data-type="eye"],
+.tile[data-type="root"],
+.tile[data-type="spider"],
+.tile[data-type="worm"],
+.tile[data-type="bell"] {
+  background-image: url('images/ground.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* SPAWN STATE DARKNESS*/
+.tile[data-type="darkness"] {
+  background-color: #000000;
+}
+
+/* AFTER MINING CODE */
+
+.tile.mined[data-type="sword"] {
+  background-image: url('images/sword.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="cat"] {
+  background-image: url('images/cat.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="necklace"] {
+  background-image: url('images/necklace.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="heart"] {
+  background-image: url('images/heart.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="shroom"] {
+  background-image: url('images/shroom.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="flame"] {
+  background-image: url('images/flame.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="key"] {
+  background-image: url('images/key.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="bone"] {
+  background-image: url('images/bone.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="skull"] {
+  background-image: url('images/skull.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="crown"] {
+  background-image: url('images/crown.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="bottle"] {
+  background-image: url('images/bottle.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="soil"] {
+  background-image: url('images/soil.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="coin"] {
+  background-image: url('images/coin.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="pebble"] {
+  background-image: url('images/pebble.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="note"] {
+  background-image: url('images/note.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="eye"] {
+  background-image: url('images/eye.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="root"] {
+  background-image: url('images/root.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="spider"] {
+  background-image: url('images/spider.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="worm"] {
+  background-image: url('images/worm.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tile.mined[data-type="bell"] {
+  background-image: url('images/bell.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/*//////////////////////////////////////////////////////// TILE EMPTY VISUALS */
+
+.tile.empty[data-type="sword"],
+.tile.empty[data-type="cat"],
+.tile.empty[data-type="necklace"],
+.tile.empty[data-type="heart"],
+.tile.empty[data-type="shroom"],
+.tile.empty[data-type="flame"],
+.tile.empty[data-type="key"],
+.tile.empty[data-type="bone"],
+.tile.empty[data-type="skull"],
+.tile.empty[data-type="crown"],
+.tile.empty[data-type="bottle"],
+.tile.empty[data-type="soil"],
+.tile.empty[data-type="coin"],
+.tile.empty[data-type="pebble"],
+.tile.empty[data-type="note"],
+.tile.empty[data-type="eye"],
+.tile.empty[data-type="root"],
+.tile.empty[data-type="spider"],
+.tile.empty[data-type="worm"],
+.tile.empty[data-type="bell"] {
+  background-image: url('images/empty.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* SCREEN SHADOW OUTLINE STYLING */
+
+#screen-shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* ensures it doesn't block mouse input */
+  z-index: 1000;
+
+  background:
+    radial-gradient(circle at center, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 10) 100%),
+    linear-gradient(to top,    rgba(0, 0, 0, 10), transparent 20%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 10), transparent 20%),
+    linear-gradient(to left,   rgba(0, 0, 0, 10), transparent 20%),
+    linear-gradient(to right,  rgba(0, 0, 0, 10), transparent 20%);
+}
+
+
+/* Overlay Styles */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  color: #0f0;
+  z-index: 100000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: monospace;
+  text-align: center;
+}
+
+.overlay.active {
+  display: flex;
+}
+
+.overlay-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* END OF DAY SCREEN SCENE STYLING*/
+
+#day-end-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #111;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+  z-index: 2000;
+}
+
+#day-end-screen h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+#day-end-screen button {
+  background: #4dd;
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+#day-end-screen button:hover {
+  background: #3bb;
+}
+
+/* Day End Overlay Styles */
+#day-end-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  color: #eee;
+  z-index: 1000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: monospace;
+}
+
+#day-end-overlay.active {
+  display: flex;
+}
+
+.day-end-content button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: #4dd;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#inventory {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10001;
+}
+
+.slot {
+  width: 32px;
+  height: 32px;
+  border: 2px solid white;
+  background-color: transparent;
+}
+
+.inventory-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* SAVE BUTTONS */
+
+/* ========================== */
+/* START SCREEN SAVE BUTTONS  */
+/* ========================== */
+
+.load-buttons button {
+  background-color: black;
+  color: limegreen;
+  font-family: monospace;
+  border: 2px solid limegreen;
+  padding: 10px 20px;
+  margin: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s, color 0.2s;
+  z-index: 100002; /* sit over any screen shadows */
+}
+
+.load-buttons button:hover {
+  background-color: limegreen;
+  color: black;
+}

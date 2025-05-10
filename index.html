@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Grave Digger</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 🎯 Game Wrapper -->
+  <div id="game-wrapper">
+
+    <!-- 🎮 Start Screen -->
+    <div id="start-screen-overlay" class="overlay active">
+      <div class="overlay-content">
+        <h1>THE GRAVE DIGGER</h1>
+        <p>Press Enter</p>
+        <div class="load-buttons">
+          <button onclick="loadGame(1)">Load Slot 1</button>
+          <button onclick="loadGame(2)">Load Slot 2</button>
+          <button onclick="loadGame(3)">Load Slot 3</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🎯 Game UI -->
+    <div id="hud">
+      Day: <span id="day-count">1</span><br>
+      Steps Left: <span id="step-count">0</span><br>
+      Digs: <span id="digs-count">0</span><br>
+      Sword: <span id="sword-count">0</span><br>
+      Cat: <span id="cat-count">0</span><br>
+      Necklace: <span id="necklace-count">0</span><br>
+      Heart: <span id="heart-count">0</span><br>
+      Shroom: <span id="shroom-count">0</span><br>
+      Flame: <span id="flame-count">0</span><br>
+      Key: <span id="key-count">0</span><br>
+      Bone: <span id="bone-count">0</span><br>
+      Skull: <span id="skull-count">0</span><br>
+      Crown: <span id="crown-count">0</span><br>
+      Bottle: <span id="bottle-count">0</span><br>
+      Soil: <span id="soil-count">0</span><br>
+      Coin: <span id="coin-count">0</span><br>
+      Pebble: <span id="pebble-count">0</span><br>
+      Note: <span id="note-count">0</span><br>
+      Eye: <span id="eye-count">0</span><br>
+      Root: <span id="root-count">0</span><br>
+      Spider: <span id="spider-count">0</span><br>
+      Worm: <span id="worm-count">0</span><br>
+      Bell: <span id="bell-count">0</span><br> 
+    </div>
+
+    <!-- 👜 Inventory -->
+    <div id="inventory">
+      <div class="slot" id="slot-1"></div>
+      <div class="slot" id="slot-2"></div>
+      <div class="slot" id="slot-3"></div>
+      <div class="slot" id="slot-4"></div>
+    </div>
+
+    <!-- 🕹️ Game Grid -->
+    <div id="game"></div>
+
+    <!-- 🌅 Day End Overlay -->
+    <div id="day-end-overlay">
+      <div class="day-end-content">
+        <h1>THE SUN RISES</h1>
+        <p>You dug <span id="stat-digs">0</span> times.</p>
+        <div id="casket-quote">Casket says: "You call that digging?"</div>
+        <br />
+        <button onclick="startNewDay()">Start New Day</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
