@@ -316,7 +316,6 @@ function updateInventoryUI() {
 function showDayEndOverlay() {
   const overlay = document.getElementById("day-end-overlay");
   if (overlay) {
-    document.getElementById("stat-digs").textContent = player.digs || 0;
     overlay.classList.add("active");
   }
 }
