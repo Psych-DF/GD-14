@@ -17,7 +17,7 @@ body {
 #game-wrapper {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;        /* Firefox */
   -ms-overflow-style: none;     /* IE and Edge */
