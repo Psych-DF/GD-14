@@ -322,17 +322,17 @@ function showDayEndOverlay() {
         let quote = "";
 
         if (player.day === 1) {
-            quote = 'Casket sneers: "Looks like we\'ve got a lazy one."';
+            quote = 'Looks like they sent us a lazy one.';
         }
 
         if (player.day === 2) {
-            quote = 'Casket sneers: "Back again?"';
+            quote = 'Back again?';
         }
 
         document.getElementById("casket-quote").textContent = quote;
     }
 }
-
+//////////////////////////////////////////////////////// END OF DAY LOGIC
 window.startNewDay = function () {
   const overlay = document.getElementById("day-end-overlay");
   if (overlay) overlay.classList.remove("active");
