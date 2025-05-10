@@ -242,7 +242,7 @@ function handleKeyDown(e) {
     moveInterval = setInterval(() => movePlayer(heldDirection), 250);
   }
 
-  if (key === " ") {
+  if (key === "q") {
     if (!mineTimeout) {
       mineTimeout = setTimeout(() => {
         mineTile(player.x, player.y);
