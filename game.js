@@ -243,6 +243,7 @@ function handleKeyDown(e) {
   }
 
   if (key === " ") {
+    e.preventDefault();
     if (!mineTimeout) {
       mineTimeout = setTimeout(() => {
         mineTile(player.x, player.y);
