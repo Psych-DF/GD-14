@@ -337,7 +337,16 @@ window.startNewDay = function () {
   updateCounters();
 };
 
-// Start game and allow music trigger
+// Start game and remove startOverlay
 window.addEventListener("DOMContentLoaded", () => {
   initGame();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    const startOverlay = document.getElementById("start-screen-overlay");
+    if (startOverlay && startOverlay.classList.contains("active")) {
+      startOverlay.classList.remove("active");
+    }
+  }
 });
