@@ -312,12 +312,25 @@ function updateInventoryUI() {
     }
   });
 }
+//////////////////////////////////////////////////////// END OF DAY LOGIC 
 
 function showDayEndOverlay() {
-  const overlay = document.getElementById("day-end-overlay");
-  if (overlay) {
-    overlay.classList.add("active");
-  }
+    const overlay = document.getElementById("day-end-overlay");
+    if (overlay) {
+        overlay.classList.add("active");
+
+        let quote = "";
+
+        if (player.day === 1) {
+            quote = 'Casket sneers: "Looks like we\'ve got a lazy one."';
+        }
+
+        if (player.day === 2) {
+            quote = 'Casket sneers: "Back again?"';
+        }
+
+        document.getElementById("casket-quote").textContent = quote;
+    }
 }
 
 window.startNewDay = function () {
@@ -335,6 +348,7 @@ window.startNewDay = function () {
   updateStepDisplay();
   updateCounters();
 };
+//////////////////////////////////////////////////////// END OF DAY LOGIC 
 
 // Start game and remove startOverlay
 window.addEventListener("DOMContentLoaded", () => {
